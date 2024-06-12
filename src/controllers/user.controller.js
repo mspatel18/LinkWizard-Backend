@@ -23,7 +23,7 @@ const registerUser = asyncHandler(async (req, res) => {
   const user = await User.create({
     username: username.toLowerCase(),
     email: email,
-    password: password,
+    password: securedPassword,
     name: name,
   });
   // generating token

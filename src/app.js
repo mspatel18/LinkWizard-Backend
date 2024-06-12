@@ -14,6 +14,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true, limit: "32kb" }));
 app.use(express.static("public"));
 
+app.get("/api/v1/", (req, res) => {
+  res.json("Welcome to LinkWizard API");
+});
 app.use("/api/v1/user", userRouter);
 app.use("/api/v1/link", linkRouter);
 
