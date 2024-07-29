@@ -5,11 +5,13 @@ const addLink = asyncHandler(async (req, res) => {
   const { name, link } = req.body;
   const { id, username } = req.user;
   if (!name || !link) {
-    throw new Error("Please fill all the fields");
+    return res.status(400).json({
+      success: false,
+      message: "Please fill all the fields",
+    });
   }
 
   const linkAvailable = await Link.findOne({ username });
-  //   console.log(linkAvailable.links.length);
   if (linkAvailable) {
     if (linkAvailable.links.length >= 10) {
       return res.status(400).json({
